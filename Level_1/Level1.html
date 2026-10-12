@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 1</title>
+<style>
+  body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f6f8fb;color:#222}
+ 
+  nav{background:#1f3a5f;display:flex;gap:6px;padding:0 20px}
+  nav a{color:#fff;text-decoration:none;padding:16px 18px}
+  nav a:hover{background:#2d5286}
+  main{max-width:720px;margin:auto;padding:24px}
+  section{background:#fff;padding:20px;margin-bottom:20px;border-radius:8px;box-shadow:0 1px 4px #0002}
+  img{max-width:100%;border-radius:8px}
+  input,button{padding:10px 14px;font-size:1rem;border-radius:6px;border:1px solid #bbb}
+  button{background:#1f3a5f;color:#fff;border:0;cursor:pointer}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#home">Home</a><a href="#form">Form</a><a href="#js">JavaScript</a>
+</nav>
+<main>
+ 
+  <section id="home">
+    <h1>My First Webpage</h1>
+    <p>This page is built with HTML and CSS during my Cognifyz web development internship.</p>
+    <img src="https://picsum.photos/700/300" alt="Sample landscape">
+  </section>
+
+  <!-- Task 1b: basic form -->
+  <section id="form">
+    <h2>Basic Form</h2>
+    <form onsubmit="event.preventDefault(); alert('Hello, ' + this.name.value + '!')">
+      <input type="text" name="name" placeholder="Your name" required>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section id="js">
+    <h2>JavaScript Tasks</h2>
+    <!-- Task 2a: color-changing button -->
+    <h3>Color button</h3>
+    <button id="colorBtn">Click me</button>
+
+    <!-- Task 2b: time-based greeting -->
+    <h3>Greeting</h3>
+    <button id="greetBtn">Show greeting</button>
+
+    <!-- Task 2c: calculator -->
+    <h3>Add two numbers</h3>
+    <input type="number" id="n1" placeholder="First"> +
+    <input type="number" id="n2" placeholder="Second">
+    <button id="addBtn">Add</button>
+    <p id="result"></p>
+  </section>
+</main>
+
+<script>
+  const colors = ["#c0392b", "#27ae60", "#8e44ad", "#e67e22", "#1f3a5f"];
+  let i = 0;
+  document.getElementById("colorBtn").addEventListener("click", e => {
+    i = (i + 1) % colors.length;
+    e.target.style.background = colors[i];
+  });
+
+  document.getElementById("greetBtn").addEventListener("click", () => {
+    const h = new Date().getHours();
+    const msg = h < 12 ? "Good morning!" : h < 17 ? "Good afternoon!" : "Good evening!";
+    alert(msg);
+  });
+
+  document.getElementById("addBtn").addEventListener("click", () => {
+    const a = parseFloat(document.getElementById("n1").value);
+    const b = parseFloat(document.getElementById("n2").value);
+    document.getElementById("result").textContent =
+      isNaN(a) || isNaN(b) ? "Please enter two numbers." : "Result: " + (a + b);
+  });
+</script>
+</body>
+</html>
